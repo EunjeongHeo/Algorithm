@@ -10,23 +10,22 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         N = Integer.parseInt(br.readLine());
-        nums = new int[N];
+        nums = new int[N];  // 순열을 저장할 배열
 
-        // 효율적인 입력 처리를 위해 StringTokenizer 사용
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
         for (int i = 0; i < N; i++) {
-            nums[i] = Integer.parseInt(st.nextToken());
+            nums[i] = Integer.parseInt(st.nextToken());  // 순열을 입력받아 배열에 저장
         }
 
+        // 다음 순열을 계산하고 결과를 출력합니다.
         if (nextPermutation()) {
-            // 출력 부분을 StringBuilder를 사용하여 성능 개선
             StringBuilder sb = new StringBuilder();
             for (int num : nums) {
-                sb.append(num).append(" ");
+                sb.append(num).append(" ");  // 다음 순열이 존재하면 순열을 출력용 문자열로 만들기
             }
-            System.out.println(sb.toString().trim());
+            System.out.println(sb.toString().trim());  // 공백을 제거하고 출력
         } else {
-            System.out.println("-1");
+            System.out.println("-1");  // 다음 순열이 없으면 -1을 출력
         }
     }
 
@@ -45,12 +44,12 @@ public class Main {
         while (nums[j] <= nums[i - 1]) {
             j--;
         }
-        swap(i - 1, j);
+        swap(i - 1, j);  // 찾은 지점을 서로 교환
 
         // i 위치부터 끝까지 순서 뒤집기
         j = N - 1;
         while (i < j) {
-            swap(i, j);
+            swap(i, j);  // 나머지 부분을 뒤집어 사전순으로 다음 순서를 만들기
             i++;
             j--;
         }
