@@ -39,9 +39,9 @@ public class Main {
 
     private static void recursive(int order, int teamNumber) {
 
-        // teamB 구성 <- teamA에 N/2만큼의 사람이 추가 완료 되었으면, teamA에 속하지 않은 사람들을 모두 teamB에 추가.
+        // teamB 구성 - teamA에 N/2만큼의 사람이 추가 완료 되었으면, teamA에 속하지 않은 사람들을 모두 teamB에 추가.
         if (teamNumber == 0) {
-            
+
             // teamB 비우기
             teamB.clear();
 
@@ -54,7 +54,7 @@ public class Main {
 
             // 점수 격차 계산
             checkScore();
-            
+
             return;
         }
 
