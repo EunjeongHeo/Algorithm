@@ -59,7 +59,7 @@ public class Main {
         }
 
         // teamA 구성
-        for (int i = order; i <= N - teamNumber; i++) {
+        for (int i = order; i < N; i++) {
 
             // i 사람 추가
             teamA.add(i);
