@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
@@ -17,9 +16,8 @@ public class Main {
         // StringBuilder 선언
         StringBuilder sb = new StringBuilder();
 
-        // 연산자, 피연산자 입력 받기
-        while( M > 0 ){ // M번 반복
-            M--;
+        // 연산자, 피연산자 입력 받고 처리
+        while( M-- > 0 ){ // M번 반복
             StringTokenizer st = new StringTokenizer(br.readLine());
             String operator = st.nextToken(); // 연산자
 
@@ -52,6 +50,7 @@ public class Main {
             }
         }
 
+				// StringBuilder 출력
         System.out.println(sb);
 
     }
