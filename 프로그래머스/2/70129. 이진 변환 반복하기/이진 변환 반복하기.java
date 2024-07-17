@@ -3,21 +3,8 @@ import java.util.ArrayList;
 
 
 class Solution {
-    public static void main(String[] args){
-        
-        Scanner scanner = new Scanner(System.in);
-        String s = scanner.nextLine();
-        
-        Solution sol = new Solution();
-        int[] answer = sol.solution(s);
-        
-        System.out.println("["+answer[0]+", "+answer[1]+"]");
-        
-    }
-    
-    
     public int[] solution(String S) {
-        
+                
         int count_zero = 0;
         int count_translate = 0;
         
