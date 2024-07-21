@@ -1,20 +1,19 @@
 class Solution {
     boolean solution(String s) {
         
-        int p = 0;
-        int y = 0;
-        
-        // 전체 문자열을 소문자로 변환
         s = s.toLowerCase();
         
-        // p 제거 후 p 개수 카운트 
-        p = s.length() - s.replace("p","").length();
+        int p_count = s.length();
         
-        // y 제거 후 y 개수 카운트 
-        y = s.length() - s.replace("y","").length();
+        s = s.replace("p","");
         
+        p_count -= s.length();
         
-        if(p == y)
+        int y_count = s.length();
+        s = s.replace("y","");
+        y_count -= s.length();
+        
+        if (p_count == y_count)
             return true;
         else
             return false;
