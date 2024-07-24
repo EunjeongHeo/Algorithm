@@ -8,28 +8,28 @@ class Solution {
         int[] pattern3 = {3,3,1,1,2,2,4,4,5,5,}; // 3번 수포자의 반복패턴
         
         // 1번 수포자
-int score1 = 0;
-for (int i = 0; i < answers.length; i++) {
-    if (answers[i] == pattern1[i % pattern1.length]) {
-        score1++;
-    }
-}
-
-// 2번 수포자
-int score2 = 0;
-for (int i = 0; i < answers.length; i++) {
-    if (answers[i] == pattern2[i % pattern2.length]) {
-        score2++;
-    }
-}
-
-// 3번 수포자
-int score3 = 0;
-for (int i = 0; i < answers.length; i++) {
-    if (answers[i] == pattern3[i % pattern3.length]) {
-        score3++;
-    }
-}
+        int score1 = 0;
+        for (int i = 0; i < answers.length; i++) {
+            if (answers[i] == pattern1[i % pattern1.length]) {
+                score1++;
+            }
+        }
+        
+        // 2번 수포자
+        int score2 = 0;
+        for (int i = 0; i < answers.length; i++) {
+            if (answers[i] == pattern2[i % pattern2.length]) {
+                score2++;
+            }
+        }
+        
+        // 3번 수포자
+        int score3 = 0;
+        for (int i = 0; i < answers.length; i++) {
+            if (answers[i] == pattern3[i % pattern3.length]) {
+                score3++;
+            }
+        }
 
 
         
