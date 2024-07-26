@@ -1,41 +1,42 @@
 import java.util.*;
+import java.util.regex.*;
 
 class Solution {
     public long solution(String expression) {
         ArrayList<String> calculationArrayList = convertToArraylist(expression);
-        calculationArrayList = calculate_multiple(calculationArrayList); // * 계산
-        calculationArrayList = calculate_plus(calculationArrayList); // + 계산
-        calculationArrayList = calculate_minus(calculationArrayList); // - 계산
+        calculationArrayList = calculate(calculationArrayList, "*");
+        calculationArrayList = calculate(calculationArrayList,"+");
+        calculationArrayList = calculate(calculationArrayList, "-");
         long answer = Math.abs(Long.parseLong(calculationArrayList.get(0)));
         
         calculationArrayList = convertToArraylist(expression);
-        calculationArrayList = calculate_multiple(calculationArrayList); // * 계산
-        calculationArrayList = calculate_minus(calculationArrayList); // - 계산
-        calculationArrayList = calculate_plus(calculationArrayList); // + 계산
+        calculationArrayList = calculate(calculationArrayList, "*");
+        calculationArrayList = calculate(calculationArrayList, "-");
+        calculationArrayList = calculate(calculationArrayList, "+");
         answer = Math.max( answer, Math.abs(Long.parseLong(calculationArrayList.get(0))));
         
         calculationArrayList = convertToArraylist(expression);
-        calculationArrayList = calculate_minus(calculationArrayList); // - 계산
-        calculationArrayList = calculate_multiple(calculationArrayList); // * 계산
-        calculationArrayList = calculate_plus(calculationArrayList); // + 계산
+        calculationArrayList = calculate(calculationArrayList, "-");
+        calculationArrayList = calculate(calculationArrayList,"*");
+        calculationArrayList = calculate(calculationArrayList,"+");
         answer = Math.max( answer, Math.abs(Long.parseLong(calculationArrayList.get(0))));
 
         calculationArrayList = convertToArraylist(expression);
-        calculationArrayList = calculate_minus(calculationArrayList); // - 계산
-        calculationArrayList = calculate_plus(calculationArrayList); // + 계산
-        calculationArrayList = calculate_multiple(calculationArrayList); // * 계산
+        calculationArrayList = calculate(calculationArrayList, "-");
+        calculationArrayList = calculate(calculationArrayList, "+");
+        calculationArrayList = calculate(calculationArrayList, "*");
         answer = Math.max( answer, Math.abs(Long.parseLong(calculationArrayList.get(0))));
 
         calculationArrayList = convertToArraylist(expression);
-        calculationArrayList = calculate_plus(calculationArrayList); // + 계산
-        calculationArrayList = calculate_multiple(calculationArrayList); // * 계산
-        calculationArrayList = calculate_minus(calculationArrayList); // - 계산
+        calculationArrayList = calculate(calculationArrayList,"+");
+        calculationArrayList = calculate(calculationArrayList,"*");
+        calculationArrayList = calculate(calculationArrayList,"-");
         answer = Math.max( answer, Math.abs(Long.parseLong(calculationArrayList.get(0))));
 
         calculationArrayList = convertToArraylist(expression);
-        calculationArrayList = calculate_plus(calculationArrayList); // + 계산
-        calculationArrayList = calculate_minus(calculationArrayList); // - 계산
-        calculationArrayList = calculate_multiple(calculationArrayList); // * 계산
+        calculationArrayList = calculate(calculationArrayList,"+");
+        calculationArrayList = calculate(calculationArrayList,"-");
+        calculationArrayList = calculate(calculationArrayList,"*");
         answer = Math.max( answer, Math.abs(Long.parseLong(calculationArrayList.get(0))));
         
         
@@ -43,34 +44,16 @@ class Solution {
     }
 
     public ArrayList<String> convertToArraylist(String expression) {
-        // 연산자를 기준으로 분리하고, 연산자도 배열에 포함시키기
-        List<String> tokens = new ArrayList<>();
-        StringBuilder number = new StringBuilder();
-        for (char ch : expression.toCharArray()) {
-            if (ch == '+' || ch == '-' || ch == '*') {
-                tokens.add(number.toString());
-                number = new StringBuilder();
-                tokens.add(Character.toString(ch));
-            } else {
-                number.append(ch);
-            }
-        }
-        if (number.length() > 0) {
-            tokens.add(number.toString());
-        }
-        return new ArrayList<>(tokens);
-    }
+        ArrayList<String> tokens = new ArrayList<>();
+        // 숫자 또는 연산자와 일치하는 패턴
+        Pattern pattern = Pattern.compile("\\d+|[\\+\\-\\*]");
+        Matcher matcher = pattern.matcher(expression);
 
-    public ArrayList<String> calculate_plus(ArrayList<String> calculationArrayList){
-        return calculate(calculationArrayList, "+");
-    }
-    
-    public ArrayList<String> calculate_minus(ArrayList<String> calculationArrayList){
-        return calculate(calculationArrayList, "-");
-    }
-    
-    public ArrayList<String> calculate_multiple(ArrayList<String> calculationArrayList){
-        return calculate(calculationArrayList, "*");
+        while (matcher.find()) {
+            tokens.add(matcher.group());
+        }
+
+        return tokens;
     }
     
     private ArrayList<String> calculate(ArrayList<String> calculationArrayList, String operator) {
